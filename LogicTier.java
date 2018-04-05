@@ -11,15 +11,15 @@ import java.util.Map;
 public class LogicTier {
     
     private DataTier dataTier; // link to the Data Tier
-	
-	public LogicTier(DataTier dataTier) {
-		this.dataTier = dataTier;
-	}
-	
-	public List<String> findBookTitlesByAuthor(String author) {
-	    if (author == null || (author.equals(""))) {
-	        return null;
-	    }
+    
+    public LogicTier(DataTier dataTier) {
+        this.dataTier = dataTier;
+    }
+    
+    public List<String> findBookTitlesByAuthor(String author) {
+        if (author == null || (author.equals(""))) {
+            return null;
+        }
             List<Book> books = dataTier.getAllBooks();
             List<String> booksByAuthor = new ArrayList<>();
             
@@ -29,5 +29,18 @@ public class LogicTier {
                 }
             }
             return booksByAuthor;
-	}
+    }
+    
+    public int findNumberOfBooksInYear(int year) {
+       List<Book> books = dataTier.getAllBooks();
+       int count = 0;
+       
+       for (Book book: books) {
+           if (book.getPublicationYear() == year) {
+               count++;
+           }
+       }
+       
+       return count;
+    }
 }
